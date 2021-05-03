@@ -4,10 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Template
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
-    
+   
 
     public class Game1 : Game
     
@@ -15,6 +12,8 @@ namespace Template
         int x_speed = 6;
         int y_speed = 6; 
 
+        // Hastigheten för bollen
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D pixel;
@@ -29,7 +28,9 @@ namespace Template
         Rectangle ball4 = new Rectangle(530, 100, 30, 30);
         Rectangle ball5 = new Rectangle(400, 430, 20, 50);
         Rectangle ball6 = new Rectangle(400, 0, 20, 50);
-
+         
+         // Plats och storlek för bollen- 1, 2, 3, 4, 5, 6 och padlarna både vänster och höger. 
+         
 
 
         public Game1()
@@ -38,40 +39,29 @@ namespace Template
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+        
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            
 
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+        >
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+            
             spriteBatch = new SpriteBatch(GraphicsDevice);
             pixel = Content.Load<Texture2D>("pixel");
 
 
-            // TODO: use this.Content to load your game content here 
+            
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
+        
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            
         }
 
         /// <summary>
@@ -110,7 +100,7 @@ namespace Template
 
             if (ball6.Intersects(ball) || ball6.Intersects(ball))
                 x_speed *= -1;
-
+            // Att bollen studsar när den träffar ett hinder. 
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -122,7 +112,7 @@ namespace Template
             if (kstate.IsKeyDown(Keys.W))
                 left_paddle.Y -= 8;
             if (kstate.IsKeyDown(Keys.S))
-                left_paddle.Y += 8;
+                left_paddle.Y += 8;        // Hastigheten på padlarna, upp och ner. 
             if (left_paddle.Y < 0)
                 left_paddle.Y = 0;
             if (right_paddle.Y < 0)
@@ -134,7 +124,7 @@ namespace Template
 
 
 
-            // TODO: Add your update logic here
+          
 
             base.Update(gameTime);
         }
@@ -156,11 +146,11 @@ namespace Template
             spriteBatch.Draw(pixel, ball3, Color.Yellow);
             spriteBatch.Draw(pixel, ball4, Color.Yellow);
             spriteBatch.Draw(pixel, ball5, Color.Yellow);
-            spriteBatch.Draw(pixel, ball6, Color.Yellow);
+            spriteBatch.Draw(pixel, ball6, Color.Yellow);  // Färg på hinner och bollen äben padlarna. 
             spriteBatch.End();
 
 
-            // TODO: Add your drawing code here.
+            
 
             base.Draw(gameTime);
         }
