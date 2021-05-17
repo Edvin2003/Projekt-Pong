@@ -14,21 +14,33 @@ namespace Template
 
         // Hastigheten för bollen
 
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D pixel;
 
+
+
+        
+        Rectangle vänsterPaddle;
+        Rectangle högerPaddle;
+        Texture2D paddleBild;
+
+        KeyboardState tangentBord = Keyboard.GetState();
+        
+
         Rectangle ball = new Rectangle(250, 100, 20, 20);
+        Rectangle Nyboll = new Rectangle(250, 100, 20, 20);
         Rectangle left_paddle = new Rectangle(10, 150, 20, 150);
         Rectangle right_paddle = new Rectangle(770, 150, 20, 150);
 
         Rectangle ball1 = new Rectangle(250, 200, 20, 70);
         Rectangle ball2 = new Rectangle(530, 200, 20, 70);
-        
-        Rectangle ball5 = new Rectangle(380, 430, 20, 50);
-        Rectangle ball6 = new Rectangle(380, 0, 20, 50);
 
-        // Plats och storlek för bollen- 1, 2, 3, 4, 5, 6 och padlarna både vänster och höger. 
+        Rectangle ball5 = new Rectangle(380, 330, 20, 50);
+        Rectangle ball6 = new Rectangle(380, 100, 20, 50);
+
+        // Plats och storlek för bollen- 1, 2, 5, 6 och padlarna både vänster och höger. 
 
 
 
@@ -46,13 +58,15 @@ namespace Template
             base.Initialize();
         }
 
-        
+
         protected override void LoadContent()
         {
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             pixel = Content.Load<Texture2D>("pixel");
 
+            
+            
 
 
         }
@@ -70,6 +84,8 @@ namespace Template
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+
             ball.X += x_speed;
             ball.Y += y_speed;
 
@@ -88,21 +104,21 @@ namespace Template
             if (ball2.Intersects(ball) || ball2.Intersects(ball))
                 x_speed *= -1;
 
-            
+
 
             if (ball5.Intersects(ball) || ball5.Intersects(ball))
                 x_speed *= -1;
 
             if (ball6.Intersects(ball) || ball6.Intersects(ball))
                 x_speed *= -1;
-                
+
             if (ball1.Intersects(ball) || ball1.Intersects(ball))
                 y_speed *= -1;
 
             if (ball2.Intersects(ball) || ball2.Intersects(ball))
                 y_speed *= -1;
 
-            
+
 
             if (ball5.Intersects(ball) || ball5.Intersects(ball))
                 y_speed *= -1;
@@ -115,13 +131,13 @@ namespace Template
                 Exit();
             KeyboardState kstate = Keyboard.GetState();
             if (kstate.IsKeyDown(Keys.Up))
-                right_paddle.Y -= 8;
+                right_paddle.Y -= 10;
             if (kstate.IsKeyDown(Keys.Down))
-                right_paddle.Y += 8;
+                right_paddle.Y += 10;
             if (kstate.IsKeyDown(Keys.W))
-                left_paddle.Y -= 8;
+                left_paddle.Y -= 10;
             if (kstate.IsKeyDown(Keys.S))
-                left_paddle.Y += 8;        // Hastigheten på padlarna, upp och ner. 
+                left_paddle.Y += 10;        // Hastigheten på padlarna, upp och ner. 
             if (left_paddle.Y < 0)
                 left_paddle.Y = 0;
             if (right_paddle.Y < 0)
@@ -143,6 +159,16 @@ namespace Template
                 ball1.Y = Window.ClientBounds.Height - ball1.Height;
             if (ball2.Y > Window.ClientBounds.Height - ball2.Height)
                 ball2.Y = Window.ClientBounds.Height - ball2.Height;
+            if (ball5.Y > Window.ClientBounds.Height - ball5.Height)
+                ball5.Y = Window.ClientBounds.Height - ball5.Height;
+            if (ball6.Y > Window.ClientBounds.Height - ball6.Height)
+                ball6.Y = Window.ClientBounds.Height - ball6.Height;
+
+            tangentBord = Keyboard.GetState();
+
+            
+        
+
 
 
 
@@ -157,20 +183,34 @@ namespace Template
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            spriteBatch.Draw(pixel, ball, Color.Green);
-            spriteBatch.Draw(pixel, left_paddle, Color.Green);
-            spriteBatch.Draw(pixel, right_paddle, Color.Green);
+           
+            spriteBatch.Draw(pixel, ball, Color.White);
+            spriteBatch.Draw(pixel, left_paddle, Color.White);
+            spriteBatch.Draw(pixel, right_paddle, Color.White);
 
-            spriteBatch.Draw(pixel, ball1, Color.Yellow);
-            spriteBatch.Draw(pixel, ball2, Color.Yellow);
-            spriteBatch.Draw(pixel, ball5, Color.Yellow);
-            spriteBatch.Draw(pixel, ball6, Color.Yellow);  // Färg på hinner och bollen även padlarna. 
+            spriteBatch.Draw(pixel, ball1, Color.White);
+            spriteBatch.Draw(pixel, ball2, Color.White);
+            spriteBatch.Draw(pixel, ball5, Color.Red);
+            spriteBatch.Draw(pixel, ball6, Color.Red);  // Färg på hinner och bollen även padlarna. 
             spriteBatch.End();
 
 
 
 
             base.Draw(gameTime);
+            
+
+
+
+
+
+
+                    
+
+
+
+                
+            
         }
     }
 }
