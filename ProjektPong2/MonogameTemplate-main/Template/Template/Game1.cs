@@ -9,28 +9,23 @@ namespace Template
     public class Game1 : Game
 
     {
-        int x_speed = 4;
-        int y_speed = 4;
+        int x_speed = 6; 
+        int y_speed = 6;
 
         // Hastigheten för bollen
-
+        
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D pixel;
 
 
-
         
-        Rectangle vänsterPaddle;
-        Rectangle högerPaddle;
-        Texture2D paddleBild;
 
         KeyboardState tangentBord = Keyboard.GetState();
         
 
         Rectangle ball = new Rectangle(250, 100, 20, 20);
-        Rectangle Nyboll = new Rectangle(250, 100, 20, 20);
         Rectangle left_paddle = new Rectangle(10, 150, 20, 150);
         Rectangle right_paddle = new Rectangle(770, 150, 20, 150);
 
@@ -41,6 +36,7 @@ namespace Template
         Rectangle ball6 = new Rectangle(380, 100, 20, 50);
 
         // Plats och storlek för bollen- 1, 2, 5, 6 och padlarna både vänster och höger. 
+
 
 
 
@@ -88,6 +84,8 @@ namespace Template
 
             ball.X += x_speed;
             ball.Y += y_speed;
+
+            
 
 
 
@@ -155,6 +153,14 @@ namespace Template
                 ball2.Y -= 8;
             if (kstate.IsKeyDown(Keys.Right))
                 ball2.Y += 8;
+            if (ball1.Y < 0)
+                ball1.Y = 0;
+            if (ball2.Y < 0)
+                ball2.Y = 0;
+            if (ball5.Y < 0)
+                ball5.Y = 0;
+            if (ball6.Y < 0)
+                ball6.Y = 0;
             if (ball1.Y > Window.ClientBounds.Height - ball1.Height)
                 ball1.Y = Window.ClientBounds.Height - ball1.Height;
             if (ball2.Y > Window.ClientBounds.Height - ball2.Height)
@@ -163,7 +169,7 @@ namespace Template
                 ball5.Y = Window.ClientBounds.Height - ball5.Height;
             if (ball6.Y > Window.ClientBounds.Height - ball6.Height)
                 ball6.Y = Window.ClientBounds.Height - ball6.Height;
-
+            
             tangentBord = Keyboard.GetState();
 
             
